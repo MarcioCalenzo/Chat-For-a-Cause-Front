@@ -1,6 +1,27 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import { useEffect } from "react";
+import { AppProps } from "next/app";
+import { ModalP } from "@/components/modal/modal";
+import Modal from "react-modal";
+import "@/styles/globals.css";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    Modal.setAppElement("#__next");
+  }, []);
+
+  return (
+    <>
+      <Component {...pageProps} />
+      <ModalP
+        titleModal="Título do Modal"
+        isOpen={false}
+        setIsOpen={() => {}}
+        className="seu-className"
+      >
+        <span></span>
+      </ModalP>
+    </>
+  );
 }
+
+export default MyApp;
