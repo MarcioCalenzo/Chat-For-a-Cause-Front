@@ -24,6 +24,7 @@ export const Header = () => {
         if (userObj) {
           setIsLogged(true);
           setUser(userObj);
+          route.push("/dashboard");
         } else {
         }
       } catch (error) {
