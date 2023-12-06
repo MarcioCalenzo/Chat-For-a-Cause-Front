@@ -5,18 +5,19 @@ import { User } from "@/interfaces";
 import Link from "next/link";
 import { api } from "@/services";
 import { ImageManual } from "../imageManual/imageManual";
+import { useRouter } from "next/router";
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState({} as User);
+  const route = useRouter();
 
   useEffect(() => {
     const checkIsLogged = async () => {
       try {
         const { data } = await api.get<User[]>("users/");
         const idUser = localStorage.getItem("chatforacause@id");
-
         const userObj: User | undefined = data.find(
           (user) => user.id === idUser
         );
@@ -31,6 +32,11 @@ export const Header = () => {
     };
     checkIsLogged();
   }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    route.push("/");
+  };
 
   return (
     <header className="h-20 border-b-2 bg-whiteFixed border-grey6">
@@ -68,6 +74,12 @@ export const Header = () => {
                   ? `${user.name.slice(0, 20)}...`
                   : user.name}
               </p>
+              <button
+                className="btn ml-6 bg-grey5 text-grey0 hover:text-grey6"
+                onClick={() => logout()}
+              >
+                Sair
+              </button>
             </div>
           )}
         </div>

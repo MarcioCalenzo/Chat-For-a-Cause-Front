@@ -92,7 +92,7 @@ export default function Home() {
         <Button
           type="submit"
           text="Entrar"
-          className="btn p-2 bg-brand1 text-grey10 font-semibold rounded h-12"
+          className="btn p-2 bg-brand1 text-grey10 font-semibold rounded h-12 disabled:text-grey0"
           disable={!isDirty || !isValid}
         />
         <h2 className="text-sm font-normal text-center text-grey2">

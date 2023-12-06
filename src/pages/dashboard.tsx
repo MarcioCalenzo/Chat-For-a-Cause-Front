@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:3009");
+const socket = io("http://18.230.192.164:3009");
 
 const Dashboard = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -27,6 +27,7 @@ const Dashboard = () => {
           route.push("/");
         }
       } catch (error) {
+        route.push("/");
         console.error(error);
       }
     };
@@ -39,7 +40,7 @@ const Dashboard = () => {
     socket.on("msgToClient", (message: Message) => {
       receivedMessage(message);
     });
-  }, [messages]);
+  }, [messages, user]);
 
   const scrollToBottom = () => {
     if (messagesEndRef.current != null) {
@@ -52,6 +53,7 @@ const Dashboard = () => {
   return (
     <main className="bg-grey8 w-screen h-screen ">
       <Header />
+      <div className=" flex justify-end mr-10"></div>
       <div className="bg-grey6 h-96 bg-center overflow-auto mt-28 rounded-t-2xl container mx-auto max-w-4xl">
         <div>
           {messages.map((message) => (

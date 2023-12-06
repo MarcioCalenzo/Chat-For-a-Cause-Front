@@ -12,7 +12,7 @@ const SendMessage: React.FC<SendMessageProps> = ({ user }) => {
         ? localStorage.getItem("chatforacause@token")
         : null;
 
-    const socket = io("http://localhost:3009", {
+    const socket = io("http://18.230.192.164:3009", {
       auth: {
         token: authToken,
       },
@@ -46,14 +46,14 @@ const SendMessage: React.FC<SendMessageProps> = ({ user }) => {
         <input
           value={text}
           onChange={(e) => setText(e.target.value)}
-          className="input w-full focus:outline-none bg-gray-100 rounded-r-none"
+          className="input w-full focus:outline-none bg-gray-100 rounded-r-lm"
           type="text"
         />
         <button
           type="submit"
           className="btn w-auto ml-4 bg-gray-500 text-white rounded-r-lg px-5 text-sm"
         >
-          Send
+          Enviar
         </button>
       </form>
     </div>
